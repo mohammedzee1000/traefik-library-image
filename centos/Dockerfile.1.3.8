@@ -1,0 +1,21 @@
+FROM registry.centos.org/centos/centos:7
+
+#RUN yum -y update && yum clean all
+
+ENV VERSION="v1.3.8" \
+    ARCH="amd64"
+
+RUN mkdir -p /opt/scripts /etc/traefik
+ADD ./install.sh ./entrypoint.sh /opt/scripts/
+RUN chmod -R +x /opt/scripts && sh /opt/scripts/install.sh
+EXPOSE 80
+ENTRYPOINT ["/opt/scripts/entrypoint.sh"]
+CMD ["traefik"]
+
+# Metadata
+LABEL org.label-schema.vendor="Containous" \
+      org.label-schema.url="https://traefik.io" \
+      org.label-schema.name="Traefik" \
+      org.label-schema.description="A modern reverse-proxy" \
+      org.label-schema.version="${VERSION}" \
+      org.label-schema.docker.schema-version="1.0"
