@@ -18,7 +18,7 @@ yum -y install ${INSTALL_PKGS} ${INSTALL_PKGS_TMP};
 
 # Install software from github releases
 wget -O /usr/local/bin/traefik ${TRAEFIK_DOWNLOAD};
-wget -O ${TRAEFIK_CONFIG_FILE} ${TRAEFIX_SAMPLE_CONFIG}
+wget -O ${TRAEFIK_CONFIG_FILE} ${TRAEFIX_SAMPLE_CONFIG};
 chmod +x /usr/local/bin/traefik;
 
 # Cleanup
