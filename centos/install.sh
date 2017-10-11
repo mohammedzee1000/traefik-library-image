@@ -35,6 +35,9 @@ watch = true
 EOF
 chmod +x /usr/local/bin/traefik;
 
+# Grant permission for non root to bind port 80
+setcap CAP_NET_BIND_SERVICE=+eip /usr/local/bin/traefik
+
 # Setup permissions
 for item in ${TRAEFIK_CONFIG_DIR}; do
     . /opt/scripts/fix-permissions.sh ${item} traefik;
